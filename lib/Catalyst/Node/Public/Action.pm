@@ -39,6 +39,14 @@ Catalyst::Node::Public::Action - An end point in the public dispatch tree, that 
 
 =head1 DESCRIPTION
 
+This is the only point in the L<Catalyst::Node::Public> tree that actually
+matches - the leaf, if you will.
+
+It returns a L<Catalyst::Node::Public::Match::Native> object that contains a
+private action path.
+
+The parent nodes are responsible for filling in all other information.
+
 =cut
 
 

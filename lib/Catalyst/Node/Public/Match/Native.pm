@@ -43,17 +43,6 @@ has arguments => (
 sub execute {
     my ( $self, $req, $app, @extra ) = @_;
 
-    # this method encapsulates the handle_request cycle in Catalyst 5.6x
-    # FIXME
-
-    # by the time we're here we're sure that what the request wanted was indeed a catalyst action (as opposed to a static file, nested request, etc)
-    # what's left to do is:
-    # * construct the context object
-    # ** The request object is constructed based on the engine request somewhere in @args, and the data we've collected in $self
-    # * Create the Dispatch::Public::Action, with the context in place
-    # * ->match the dispatch on the private dispatch tree
-    # * return the result object from the context object
-
     my $catalyst_req = $self->make_request( $req, $app );
     my $context = $self->make_context( $catalyst_req, $app );
 
@@ -124,13 +113,66 @@ __END__
 
 =head1 NAME
 
-Catalyst::Node::Public::Match::Native - 
+Catalyst::Node::Public::Match::Native - A native 
 
 =head1 SYNOPSIS
 
 	use Catalyst::Node::Public::Match::Native;
 
 =head1 DESCRIPTION
+
+This L<Catalyst::Node::Public::Match> object represents a successfully located
+resource within the Catalyst public dispatcher.
+
+It encapsulates all the meta data that will be later be made available using
+L<Catalyst::Request> (regex captures, trailing arguments, etc).
+
+It also contains the path of the private action that should be invoked to
+implement this match.
+
+=head1 METHODS
+
+=over 4
+
+=item derive $hashref
+
+Add new keys. This merges data into the match object.
+
+Currently it masks the old data, but in the future it should concatenate
+argument lists, etc.
+
+=item execute $engine_req, $app, @extra
+
+This method encapsulates the handle_request cycle in Catalyst 5.6x.
+
+By the time we're here we're sure that what the request wanted was indeed a
+catalyst action (as opposed to a static file, nested request, etc)
+
+What this does is
+
+=over 4
+
+=back
+
+=item construct the context object
+
+The request object is constructed based on the engine request somewhere in @args, and the data we've collected in $self
+
+=item Create the Dispatch::Public::Action, with the context in place
+
+=item ->match the dispatch on the private dispatch tree
+
+The private dispatch tree is provided by $app
+
+=item return the Catalyst::Response object from the context object
+
+=back
+
+=head1 TODO
+
+This uses Test::MockObject to fake some stuff. That ought to go, by
+implementing something like Catalyst::Application, which helps  construct the
+various objects.
 
 =cut
 

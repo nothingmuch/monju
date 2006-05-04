@@ -26,7 +26,7 @@ Monju::Dispatch - Generalized abstract nonsense for web applications.
     package My::Dispatch;
     use Moose;
 
-	extends "Monju::Dispatch";
+	with "Monju::Dispatch";
 
 =head1 DESCRIPTION
 

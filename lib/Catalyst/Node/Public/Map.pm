@@ -23,13 +23,16 @@ __END__
 
 =head1 NAME
 
-Catalyst::Node::Public::Map - 
+Catalyst::Node::Public::Map - L<Monju::Node::Map> tailored for catalyst
 
 =head1 SYNOPSIS
 
 	use Catalyst::Node::Public::Map;
 
 =head1 DESCRIPTION
+
+This L<Monju::Node::Map> consumer will also try to find a child name '', to
+implement C<index> and/or C<default>.
 
 =cut
 

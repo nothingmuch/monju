@@ -48,13 +48,30 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Map - 
+Monju::Node::Map - redirect L<Monju::Dispatch::Path> to nested path elements.
 
 =head1 SYNOPSIS
 
 	use Monju::Node::Map;
 
 =head1 DESCRIPTION
+
+This L<Monju::Node> is of the concrete variety - it can receive any
+L<Monju::Dispatch> that C<does> L<Monju::Dispatch::Path> and also C<does>
+L<Monju::Dispatch::Localize>.
+
+It contains a registry of child nodes, mapped by name, and it will match the
+first element of the path to a child, and continue dispatch over there.
+
+=head1 METHODS
+
+=head2 match $dispatch
+
+When receiving a dispatch of the correct type, this node will look at the first
+element of C<< $dispatch->path >> and try to find a child by that name.
+
+If a child is found, it will be passed to the dispatch with a localized path
+that does not include the head.
 
 =cut
 

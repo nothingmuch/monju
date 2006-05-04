@@ -43,13 +43,16 @@ __END__
 
 =head1 NAME
 
-Catalyst::Node::Public::CaptureArgs - 
+Catalyst::Node::Public::CaptureArgs - Argument capturing semantics
 
 =head1 SYNOPSIS
 
 	use Catalyst::Node::Public::CaptureArgs;
 
 =head1 DESCRIPTION
+
+Capture a certain number or all of the path elements at this point as
+arguments, and invoke the nested L<Catalyst::Node::Public> with an empty path.
 
 =cut
 
