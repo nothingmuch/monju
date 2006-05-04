@@ -1,0 +1,30 @@
+= Test Regex
+
+The Regex node needs testing
+
+= Implement Monju::Node::Try
+
+has any number of nodes and try them in turn.
+
+This is used to try Regex, then Map at each namespace, and is the child named '' for wherever there is index/default.
+
+= Catalyst::Node::Public::Compat, Catalyst::Node::Public::Match::Compat
+
+Encapsulate the "old" dispatcher
+
+18:20 <@nothingmuch> names::are::too::long::and::usually::suck (like all my modules)
+
+= @{ $self->accessor_for_array_stuff }
+
+stevan will be fixing this: has ... auto_deref => 1 - we need to use it when Moose has it (0.06?)
+
+= Catalyst::Application
+
+This is an instance of MyApp.pm
+
+This contains the public and private dispatcher.
+
+This is the factory object, used to create Catalyst::Context, Catalyst::Request, Catalyst::Response, etc.
+
+It manages pluggabability (overridden types, etc).
+
