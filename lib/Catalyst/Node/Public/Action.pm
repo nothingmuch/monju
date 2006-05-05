@@ -17,6 +17,8 @@ has private_action_path => (
 
 sub match {
     my ( $self, $dispatch ) = @_;
+
+    return if @{ $dispatch->path }; # we only match when the path is empty
     
     Native->new(
         private_action_path => $self->private_action_path,
