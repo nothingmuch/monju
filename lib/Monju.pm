@@ -103,9 +103,9 @@ The name also has an underlying metaphor: fast breeder reactors need only
 consume a small portion of Pu-239 to "start up", after which they enrich U-238
 into Pu-239 by themselves, creating more fuel than there was to begin with.
 
-We that Monju (the module) will similarly perpetuate into a platform that will
-allow web frameworks to intermix, resulting in more "energy" than it actually
-came with.
+We hope that Monju (the module) will similarly perpetuate into a platform that
+will allow web frameworks to intermix, resulting in more "energy" than it
+actually came with.
 
 Within the context of Budhism, Manjushri, is a bodhisattva. In Japanese his
 name is Monju, and he has a nuclear reactor named after him. However, Monju
