@@ -93,7 +93,7 @@ returns a successful match.
 This design is heavily influenced by functional programming styles, and that
 topic is essentially required background.
 
-=head1 TRIVIA
+=head1 ETYMOLOGY
 
 Monju is named for the Japanese fast breeder nuclear reactor. This is both
 consistent with other Catalyst spinoff names (L<Isotope>, L<Reaction>,
