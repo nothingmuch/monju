@@ -6,11 +6,11 @@ use Moose::Role;
 use strict;
 use warnings;
 
+with $_ for qw/
+    Monju::Node::Collection
+/;
+
 requires 'child_hash';
-
-requires 'child_list';
-
-requires 'child_count';
 
 requires 'child_names'; # must be the same order as child_list in Ordered collection
 

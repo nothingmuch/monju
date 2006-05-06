@@ -33,6 +33,11 @@ use Test::Exception;
     ::lives_ok {
         with "Monju::Node::Named";
     } "load named role";
+
+    package My::Lovely::Unbastard;
+    use Moose;
+
+    with "Monju::Node::HasParent";
 }
 
 my $r = "My::Lovely::Node";
@@ -161,3 +166,14 @@ is_deeply( [ $node->child_names ], [ qw/disco dancing foo bar/ ], "all names are
 can_ok( $node, "remove_children_by_indices" );
 $node->remove_children_by_indices( 1, 2 );
 is_deeply( [ $node->child_names ], [ qw/disco bar/ ], "all names are in place" );
+
+my ( $has_parent_1, $has_parent_2 ) = map { My::Lovely::Unbastard->new } 1 .. 2;
+
+$node->set_child_by_name( "thingy" => $has_parent_1 );
+
+is( $has_parent_1->parent, $node, "parent associated" );
+is( $has_parent_2->parent, undef, "parent not associated" );
+
+$node->remove_children_by_name( qw/thingy/ );
+
+is( $has_parent_1->parent, undef, "parent not associated" );

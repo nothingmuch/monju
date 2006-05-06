@@ -31,37 +31,44 @@ sub set_child_by_name {
         $self->child_hash->{$name} = $child;
         push @{ $self->child_names }, $name;
     }
+
+    $self->attach_child_nodes( $child );
 }
 
 sub splice_children {
-    my ( $self, $from, $to, @children ) = @_;
+    my ( $self, $from, $to, @replacements ) = @_;
 
-    foreach my $child ( @children ) {
+    foreach my $child ( @replacements ) {
         croak "Child nodes inserted by splicing must know their own name"
             unless eval { $child->does("Monju::Node::Named") };
     };
 
-    my @names = map { $_->name } @children;
+    my @names = map { $_->name } @replacements;
 
     my @delete = splice( @{ $self->child_names }, $from, $to, @names );
 
-    my @ret = delete @{ $self->child_hash }{ @delete };
-    @{ $self->child_hash }{ @names } = @children;
+    my @spliced_out = delete @{ $self->child_hash }{ @delete };
 
-    @ret;
+    $self->detach_child_nodes( @spliced_out );
+    $self->attach_child_nodes( @replacements );
+
+    @{ $self->child_hash }{ @names } = @replacements;
+
+    @spliced_out;
 }
 
 sub remove_children_by_name {
     my ( $self, @names ) = @_;
     
-    my @ret = delete @{ $self->child_hash }{ @names };
+    my @deleted = delete @{ $self->child_hash }{ @names };
+    $self->detach_child_nodes( @deleted );
    
     @{ $self->child_names } = grep {
         my $existing = $_;
         not any { $_ eq $existing } @names;
     } @{ $self->child_names };
 
-    @ret;
+    @deleted;
 }
 
 __PACKAGE__;

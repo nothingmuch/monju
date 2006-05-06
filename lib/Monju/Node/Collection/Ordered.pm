@@ -6,9 +6,9 @@ use Moose::Role;
 use strict;
 use warnings;
 
-requires 'child_list';
-
-requires 'child_count';
+with $_ for qw/
+    Monju::Node::Collection
+/;
 
 requires 'get_children_by_index';
 
