@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+
+package Monju::Node::Collection::Named::Mutable;
+use Moose::Role;
+
+use strict;
+use warnings;
+
+requires 'remove_children_by_name';
+
+requires 'set_child_by_name';
+
+sub add_named_children {
+    my ( $self, @children ) = @_;
+    $self->set_child_by_name( $_->name, $_) for @children;
+}
+
+sub remove_named_children {
+    my ( $self, @children ) = @_;
+    $self->remove_child_by_name( map { $_->name } @children );
+}
+
+__PACKAGE__;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Monju::Node::Collection::Named::Mutable - 
+
+=head1 SYNOPSIS
+
+	use Monju::Node::Collection::Named::Mutable;
+
+=head1 DESCRIPTION
+
+=cut
+
+

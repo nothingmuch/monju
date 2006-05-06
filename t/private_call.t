@@ -43,12 +43,12 @@ my $bar = Action->new(
 
 my $controller = Controller->new(
     component => $comp,
-    children => { foo => $foo, bar => $bar },
+    child_hash => { foo => $foo, bar => $bar },
 );
 
 isa_ok( $controller, Controller );
-isa_ok( $controller->get_child("foo"), Action );
-is( $controller->get_child("foo"), $foo, "foo action is correct" );
+isa_ok( $controller->get_child_by_name("foo"), Action );
+is( $controller->get_child_by_name("foo"), $foo, "foo action is correct" );
 
 my $c = Test::MockObject::Extends->new("Catalyst::Context");
 

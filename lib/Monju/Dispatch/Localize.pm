@@ -9,21 +9,26 @@ no warnings "uninitialized";
 
 with "Monju::Dispatch";
 
-use Scalar::Util qw/reftype/;
+use Scalar::Util qw/reftype blessed/;
 
-around qw/execute match/ => sub {
+around qw/match/ => sub {
     my $next = shift;
     my ( $self, @args ) = @_;
-    
-    if ( reftype( my $localize = $args[-1] ) eq "HASH" ) {
-        pop @args;
-        local @{ $self }{keys %$localize} = values %$localize;
-        # $self = $self->meta->clone_instance( $self, %$localize );
-        $self->$next( @args );
-    } else {
-        $self->$next( @args );
-    }
+
+    my ( $localized, @spliced_args ) = $self->localize( @args );
+    $localized->$next( @args );
 };
+
+sub localize {
+    my ( $self, @args ) = @_;
+    
+    if ( !blessed($args[-1]) and reftype( my $localize = $args[-1] ) eq "HASH" ) {
+        pop @args;
+        return ($self->meta->clone_instance( $self, %$localize ), @args);
+    }
+
+    return ($self, @args);
+}
 
 __PACKAGE__;
 

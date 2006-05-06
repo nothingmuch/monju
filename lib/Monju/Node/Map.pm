@@ -6,38 +6,32 @@ use Moose::Role;
 use strict;
 use warnings;
 
-has children => (
-    isa => "HashRef",
-    is  => "ro",
-    default => sub { {} },
-);
-
-has children => (
-    isa => "HashRef",
-    is  => "ro",
-    default => sub { {} },
-);
+with $_ for qw/
+    Monju::Node
+    Monju::Node::Collection::Named
+/;
 
 sub match {
     my ( $self, $dispatch ) = @_; # assumes Monju::Dispatch::Localize
     my @path = @{ $dispatch->path };
 
-    my $child = $self->get_child( $dispatch, \@path );
+    ( my($child), @path ) = $self->get_child_for_path( $dispatch, @path );
+
     return unless $child;
 
     $dispatch->match( $child, { path => \@path });
 }
 
-sub get_child {
-    my ( $self, $dispatch, $path ) = @_;
+sub get_child_for_path {
+    my ( $self, $dispatch, @path ) = @_;
+
+    my $name = shift @path;
     
+    if ( my $child = $self->get_children_by_name( $name ) ) {
+        return ( $child, @path );
+    }
 
-    no warnings "uninitialized";
-    my $child = $self->children->{ $path->[0] };
-    return unless $child;
-
-    pop @$path;
-    return $child;
+    return;
 }
 
 __PACKAGE__;

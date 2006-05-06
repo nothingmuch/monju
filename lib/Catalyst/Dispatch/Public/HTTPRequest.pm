@@ -6,7 +6,10 @@ use Moose;
 use strict;
 use warnings;
 
-with "Monju::Dispatch::Path";
+with $_ for qw/
+    Monju::Dispatch::Path
+    Monju::Dispatch::Localize
+/;
 
 # FIXME override path here, make sure it points to URI, etc
 

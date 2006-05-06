@@ -34,7 +34,7 @@ sub match {
     my ( $self, $node ) = @_;
     if ( $node->isa("Catalyst::Node::Private::Controller") ) {
         foreach my $name ( qw/begin auto end/ ) {
-            my $action = $node->get_child($name) || next;
+            my $action = $node->get_child_by_name($name) || next;
             my $method = "${name}_actions";
             push @{ $self->$method }, $action;
         }

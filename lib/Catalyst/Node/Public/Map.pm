@@ -6,13 +6,22 @@ use Moose;
 use strict;
 use warnings;
 
-with "Monju::Node::Map";
+with $_ for qw/
+    Monju::Node::Collection::Hybrid
+    Monju::Node::Map
+    Catalyst::Node::Public
+/;
 
-around get_child => sub { # implement '' key for index/default etc
+around get_child_for_path => sub { # implement '' key for index/default etc
     my $next = shift;
-    my ( $self, $dispatch, $path ) = @_;
+    my ( $self, $dispatch, @path ) = @_;
 
-    $self->$next( $dispatch, $path ) || $self->$next($dispatch, ['']);
+    if ( my @match = $self->$next( $dispatch, @path ) ) {
+        return @match;
+    } else {
+        my @res = $self->$next($dispatch, '', @path);
+        return @res;
+    }
 };
 
 __PACKAGE__;

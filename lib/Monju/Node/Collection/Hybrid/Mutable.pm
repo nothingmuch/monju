@@ -1,0 +1,85 @@
+#!/usr/bin/perl
+
+package Monju::Node::Collection::Hybrid::Mutable;
+use Moose::Role;
+
+use strict;
+use warnings;
+
+use Monju::Node::Named;
+
+use Carp qw/croak/;
+use List::MoreUtils qw/any/;
+
+with $_ for qw/
+    Monju::Node::Collection::Hybrid
+    Monju::Node::Collection::Named::Mutable
+    Monju::Node::Collection::Ordered::Mutable
+/;
+
+has '+child_hash' => (
+    default  => sub { {} },
+    required => 0,
+);
+
+sub set_child_by_name {
+    my ( $self, $name, $child ) = @_;
+
+    if ( $self->child_exists_by_name( $name ) ) {
+        $self->child_hash->{$name} = $child;
+    } else {
+        $self->child_hash->{$name} = $child;
+        push @{ $self->child_names }, $name;
+    }
+}
+
+sub splice_children {
+    my ( $self, $from, $to, @children ) = @_;
+
+    foreach my $child ( @children ) {
+        croak "Child nodes inserted by splicing must know their own name"
+            unless eval { $child->does("Monju::Node::Named") };
+    };
+
+    my @names = map { $_->name } @children;
+
+    my @delete = splice( @{ $self->child_names }, $from, $to, @names );
+
+    my @ret = delete @{ $self->child_hash }{ @delete };
+    @{ $self->child_hash }{ @names } = @children;
+
+    @ret;
+}
+
+sub remove_children_by_name {
+    my ( $self, @names ) = @_;
+    
+    my @ret = delete @{ $self->child_hash }{ @names };
+   
+    @{ $self->child_names } = grep {
+        my $existing = $_;
+        not any { $_ eq $existing } @names;
+    } @{ $self->child_names };
+
+    @ret;
+}
+
+__PACKAGE__;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Monju::Node::Collection::Hybrid::Mutable - 
+
+=head1 SYNOPSIS
+
+	use Monju::Node::Collection::Hybrid::Mutable;
+
+=head1 DESCRIPTION
+
+=cut
+
+

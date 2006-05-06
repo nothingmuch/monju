@@ -6,7 +6,11 @@ use Moose;
 use strict;
 use warnings;
 
-with qw/Monju::Node::Map Catalyst::Node::Private/;
+with $_ for qw/
+    Monju::Node::Collection::Hybrid
+    Monju::Node::Map
+    Catalyst::Node::Private
+/;
 
 has component => (
     isa => "Catalyst::Component::Controller",

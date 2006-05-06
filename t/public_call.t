@@ -47,7 +47,7 @@ my $bar = Action->new(
 
 my $controller = Controller->new(
     component => $comp,
-    children => { foo => $foo, bar => $bar },
+    child_hash => { foo => $foo, bar => $bar },
 );
 
 
@@ -66,7 +66,7 @@ my $public_bar = CaptureArgs->new(
 );
 
 my $root_ns = Map->new(
-    children => { "" => $public_foo, bar => $public_bar },
+    child_hash => { "" => $public_foo, bar => $public_bar },
 );
 
 my $get_index = HTTPRequest->new(

@@ -31,7 +31,7 @@ sub match {
         $remaining = [];
     }
 
-    my $match = $dispatch->match( $self->child, ({ arguments => $remaining }) ) || return;
+    my $match = $dispatch->match( $self->child, ({ path => $remaining }) ) || return;
     return $match->derive({ arguments => $captured });
 }
 
