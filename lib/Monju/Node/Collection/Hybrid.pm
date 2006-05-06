@@ -124,15 +124,24 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Collection::Hybrid - Named and Ordered at the same time
+Monju::Node::Collection::Hybrid - An implementation role that does both Named
+and Ordered.
 
 =head1 SYNOPSIS
 
-	use Monju::Node::Collection::Hybrid;
+    package My::Node;
+    use Moose;
+
+	with "Monju::Node::Collection::Hybrid";
 
 =head1 DESCRIPTION
 
-This differs from Collection::Named and Collection::Ordered in that it's practical.
+This role gives you drop in L<Monju::Node::Collection::Named> and
+L<Monju::Node::Collection::Ordered> behavior by using both a hash and an array.
+
+No further methods need to be supplied on assimilation of this role.
+
+This role can support the behavioral role L<Monju::Node::Map>.
 
 =cut
 

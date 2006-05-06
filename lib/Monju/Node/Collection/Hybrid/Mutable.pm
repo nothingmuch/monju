@@ -72,13 +72,19 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Collection::Hybrid::Mutable - 
+Monju::Node::Collection::Hybrid::Mutable - Adds a write-api to the Hybrid collection.
 
 =head1 SYNOPSIS
 
-	use Monju::Node::Collection::Hybrid::Mutable;
+    package My::Node;
+	use Moose;
 
+    with "Monju::Node::Collection::Hybrid::Mutable";
+    
 =head1 DESCRIPTION
+
+This role assimilates L<Monju::Node::Collection::Hybrid>, and adds writability
+to it.
 
 =cut
 

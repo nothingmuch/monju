@@ -24,11 +24,15 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Collection::Ordered - A node with an array of children.
+Monju::Node::Collection::Ordered - An interface role for a node with an ordered
+list of children.
 
 =head1 SYNOPSIS
 
-	use Monju::Node::Collection::Ordered;
+    package My::Node;
+    use Moose;
+
+	with "Monju::Node::Collection::Ordered";
 
 =head1 DESCRIPTION
 

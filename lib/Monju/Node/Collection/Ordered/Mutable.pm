@@ -6,7 +6,7 @@ use Moose::Role;
 use strict;
 use warnings;
 
-with qw/Monju::Node::Collection::Ordered Monju::Node::Mutable/;
+with "Monju::Node::Collection::Ordered";
 
 requires 'splice_children';
 
@@ -54,12 +54,15 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Collection::Ordered::Mutable - A mutating API for ordered
-collections.
+Monju::Node::Collection::Ordered::Mutable - An interface role with a write-api
+for ordered collections.
 
 =head1 SYNOPSIS
 
-	use Monju::Node::Collection::Ordered::Mutable;
+    package My::Node;
+    use Moose;
+
+	with "Monju::Node::Collection::Ordered::Mutable";
 
 =head1 DESCRIPTION
 

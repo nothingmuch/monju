@@ -34,7 +34,8 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Try - Try to match an ordered collection of children.
+Monju::Node::Try - A behavioral node role to return the first match from an
+ordered collection of child nodes.
 
 =head1 SYNOPSIS
 

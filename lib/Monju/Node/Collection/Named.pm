@@ -33,11 +33,14 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Collection::Named - A node with a hash of children.
+Monju::Node::Collection::Named - An interface role for a node with named children.
 
 =head1 SYNOPSIS
 
-	use Monju::Node::Collection::Named;
+    package My::Node;
+    use Moose;
+
+	with "Monju::Node::Collection::Named";
 
 =head1 DESCRIPTION
 

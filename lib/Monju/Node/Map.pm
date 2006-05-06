@@ -42,7 +42,8 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Map - redirect L<Monju::Dispatch::Path> to nested path elements.
+Monju::Node::Map - A behavioral node role to redirect L<Monju::Dispatch::Path>
+dispatches to nested path elements.
 
 =head1 SYNOPSIS
 

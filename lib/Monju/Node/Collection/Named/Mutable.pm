@@ -6,6 +6,8 @@ use Moose::Role;
 use strict;
 use warnings;
 
+with "Monju::Node::Collection::Named";
+
 requires 'remove_children_by_name';
 
 requires 'set_child_by_name';
@@ -28,7 +30,8 @@ __END__
 
 =head1 NAME
 
-Monju::Node::Collection::Named::Mutable - 
+Monju::Node::Collection::Named::Mutable - An interface role with a write api
+for name-keyed collections.
 
 =head1 SYNOPSIS
 
