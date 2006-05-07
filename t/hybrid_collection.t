@@ -171,9 +171,9 @@ my ( $has_parent_1, $has_parent_2 ) = map { My::Lovely::Unbastard->new } 1 .. 2;
 
 $node->set_child_by_name( "thingy" => $has_parent_1 );
 
-is( $has_parent_1->parent, $node, "parent associated" );
-is( $has_parent_2->parent, undef, "parent not associated" );
+is( $has_parent_1->parent_node, $node, "parent associated" );
+is( $has_parent_2->parent_node, undef, "parent not associated" );
 
 $node->remove_children_by_name( qw/thingy/ );
 
-is( $has_parent_1->parent, undef, "parent not associated" );
+is( $has_parent_1->parent_node, undef, "parent not associated" );

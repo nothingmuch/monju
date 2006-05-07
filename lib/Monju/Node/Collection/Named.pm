@@ -23,7 +23,12 @@ requires 'get_names_of_children';
 sub get_child_by_name {
     my ( $self, $name ) = @_;
     ( $self->get_children_by_name( $name ) )[0];
-}   
+}
+
+sub get_name_of_child {
+    my ( $self, $name ) = @_;
+    ( $self->get_names_of_children( $name ) )[0];
+}
 
 __PACKAGE__;
 

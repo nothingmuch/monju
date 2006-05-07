@@ -19,7 +19,7 @@ sub add_named_children {
 
 sub remove_named_children {
     my ( $self, @children ) = @_;
-    $self->remove_child_by_name( map { $_->name } @children );
+    $self->remove_children_by_name( map { $_->name } @children );
 }
 
 __PACKAGE__;

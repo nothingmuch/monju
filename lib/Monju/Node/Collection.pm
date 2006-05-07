@@ -17,12 +17,12 @@ sub BUILD {
 
 sub attach_child_nodes {
     my ( $self, @children ) = @_;
-    $_->parent( $self ) for grep { blessed($_) && $_->does("Monju::Node::HasParent") } @children;
+    $_->parent_node( $self ) for grep { blessed($_) && $_->does("Monju::Node::HasParent") } @children;
 }
 
 sub detach_child_nodes {
     my ( $self, @children ) = @_;
-    $_->parent( undef ) for grep { blessed($_) && $_->does("Monju::Node::HasParent") } @children;
+    $_->parent_node( undef ) for grep { blessed($_) && $_->does("Monju::Node::HasParent") } @children;
 }
 
 __PACKAGE__;
