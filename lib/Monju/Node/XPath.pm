@@ -11,7 +11,7 @@ use Monju::Node::XPath::DocRoot;
 use Tree::XPathEngine;
 use Tree::XPathEngine::Number;
 
-with $_ for qw/
+with qw/
     Monju::Node::Named
     Monju::Node::HasParent
     Monju::Node::Collection::Ordered

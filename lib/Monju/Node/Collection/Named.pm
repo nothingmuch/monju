@@ -6,7 +6,7 @@ use Moose::Role;
 use strict;
 use warnings;
 
-with $_ for qw/
+with qw/
     Monju::Node::Collection
 /;
 

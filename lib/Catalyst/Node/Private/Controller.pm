@@ -6,7 +6,7 @@ use Moose;
 use strict;
 use warnings;
 
-with $_ for qw/
+with qw/
     Monju::Node::Collection::Hybrid
     Monju::Node::Map
     Catalyst::Node::Private

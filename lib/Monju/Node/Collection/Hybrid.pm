@@ -25,7 +25,7 @@ has child_names => (
     auto_deref => 1,
 );
 
-with $_ for qw/
+with qw/
     Monju::Node::Collection::Named
     Monju::Node::Collection::Ordered
 /;

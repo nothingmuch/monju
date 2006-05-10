@@ -11,7 +11,7 @@ use Monju::Node::Named;
 use Carp qw/croak/;
 use List::MoreUtils qw/any/;
 
-with $_ for qw/
+with qw/
     Monju::Node::Collection::Hybrid
     Monju::Node::Collection::Named::Mutable
     Monju::Node::Collection::Ordered::Mutable
