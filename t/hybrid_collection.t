@@ -24,6 +24,8 @@ use Test::Exception;
     package My::Lovely::Named;
     use Moose;
 
+    sub name {}; # FIXME this should be handled by role composition
+
     has name => (
         isa => "Str",
         is  => "ro",

@@ -11,7 +11,8 @@ extends "Catalyst::Node::Public";
 has children => (
     isa     => "ArrayRef",
     is      => "ro",       # you edit the ref
-    default => sub { [] }, # FIXME shared defaults
+    auto_deref => 1,
+    default    => sub { [] }, # FIXME shared defaults
 );
 
 sub match {
@@ -40,7 +41,7 @@ sub try_path {
 
     my $path_string = $self->join_path( @$path );
 
-    foreach my $child ( @{ $self->children } ) {
+    foreach my $child ( $self->children ) {
         my ( $pattern, $node ) = @$child;
 
         # $node is likely a Catpure
@@ -65,7 +66,7 @@ sub try_path {
     return $dispatch->select(
         map { $dispatch->dispatch( $_->[1] ) }
             grep { $self->match( $dispatch, $_->[0] ) }
-                @{ $self->children }
+                $self->children
     );
 }
 

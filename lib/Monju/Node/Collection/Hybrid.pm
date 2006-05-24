@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 package Monju::Node::Collection::Hybrid;
-use Moose::Role;
+use Moose::Meta::Role::SkipBuild;
 
 use strict;
 use warnings;
@@ -33,7 +33,7 @@ with qw/
 sub BUILD {
     my ( $self, @whatever ) = @_;
 
-    if ( !ref($self->child_names) ) {
+    if ( !ref($self->{child_names}) ) { # FIXME kludge ?
         $self->{child_names} = [ sort keys %{ $self->child_hash } ];
     } else {
         my @names = sort $self->child_names;
@@ -42,6 +42,8 @@ sub BUILD {
             croak "The list of child names must match the list of child_hash keys";
         }
     }
+
+    $self->Monju::Node::Collection::BUILD( @whatever ); # FIXME SkipBuild
 }
 
 sub child_list {

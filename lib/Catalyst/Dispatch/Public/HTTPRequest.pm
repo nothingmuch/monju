@@ -11,7 +11,13 @@ with qw/
     Monju::Dispatch::Localize
 /;
 
-# FIXME override path here, make sure it points to URI, etc
+has path => ( # FIXME this should be a delegate of URI
+    isa => "ArrayRef",
+    is  => "ro",
+    auto_deref => 1,
+    default    => sub { [] },
+);
+
 
 
 __PACKAGE__;

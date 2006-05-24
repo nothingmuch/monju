@@ -15,19 +15,22 @@ extends "Catalyst::Dispatch::Private::Call"; # it actually acts on the private t
 has begin_actions => (
     isa => "ArrayRef",
     is  => "ro",
-    default => sub { [] },
+    auto_deref => 1,
+    default    => sub { [] },
 );
 
 has auto_actions => (
     isa => "ArrayRef",
     is  => "ro",
-    default => sub { [] },
+    auto_deref => 1,
+    default    => sub { [] },
 );
 
 has end_actions => (
     isa => "ArrayRef",
     is  => "ro",
-    default => sub { [] },
+    auto_deref => 1,
+    default    => sub { [] },
 );
 
 sub match {
@@ -73,7 +76,7 @@ sub execute_begin {
 sub execute_auto {
     my ( $self, $call ) = @_;
 
-    foreach my $auto ( @{ $self->auto_actions } ) {
+    foreach my $auto ( $self->auto_actions ) {
         return unless $call->execute( $auto );
     }
 

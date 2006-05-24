@@ -20,7 +20,7 @@ sub execute {
     my $rv = eval {
         context_sensitive {
             local @{ $self }{ keys %$localize } = values %$localize;
-            $node->execute( $c, @{ $self->arguments } )
+            $node->execute( $c, $self->arguments )
         }
     };
 

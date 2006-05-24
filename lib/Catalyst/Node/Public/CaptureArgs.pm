@@ -19,7 +19,7 @@ has child => (
 
 sub match {
     my ( $self, $dispatch ) = @_;
-    my @path_elements = @{ $dispatch->path };
+    my @path_elements = $dispatch->path;
 
     my ( $captured, $remaining );
 

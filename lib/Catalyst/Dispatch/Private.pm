@@ -6,12 +6,20 @@ use Moose::Role;
 use strict;
 use warnings;
 
+has path => (
+    isa => "ArrayRef",
+    is  => "ro",
+    auto_deref => 1,
+    default    => sub { [] },
+);
+
 with qw/Monju::Dispatch::Path/;
 
 has arguments => (
     isa => "ArrayRef",
     is  => "ro",
-    default => sub { [] },
+    auto_deref => 1,
+    default    => sub { [] },
 );
 
 has context => (

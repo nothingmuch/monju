@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 package Monju::Node::Collection;
-use Moose::Role;
+use Moose::Meta::Role::SkipBuild;
 
 use strict;
 use warnings;
@@ -12,6 +12,7 @@ requires 'child_count';
 
 sub BUILD {
     my $self = shift;
+    $self->Monju::Node::Collection::Hybrid::BUILD(@_) if $self->does("Monju::Node::Collection::Hybrid") && caller ne "Monju::Node::Collection::Hybrid"; # FIXME SkipBuild
     $self->attach_child_nodes( $self->child_list );
 }
 

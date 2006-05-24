@@ -8,11 +8,7 @@ use warnings;
 
 with "Monju::Dispatch";
 
-has path => (
-    isa => "ArrayRef",
-    is  => "ro",
-    default => sub { [] },
-);
+requires "path";
 
 __PACKAGE__;
 

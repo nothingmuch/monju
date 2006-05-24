@@ -13,7 +13,7 @@ with qw/
 
 sub match {
     my ( $self, $dispatch ) = @_; # assumes Monju::Dispatch::Localize
-    my @path = @{ $dispatch->path };
+    my @path = $dispatch->path;
 
     ( my($child), @path ) = $self->get_child_for_path( $dispatch, @path );
 
