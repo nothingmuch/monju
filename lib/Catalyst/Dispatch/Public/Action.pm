@@ -33,8 +33,9 @@ has end_actions => (
     default    => sub { [] },
 );
 
-sub match {
+before match => sub { # FIXME replace with CollectByPath role
     my ( $self, $node ) = @_;
+
     if ( $node->isa("Catalyst::Node::Private::Controller") ) {
         foreach my $name ( qw/begin auto end/ ) {
             my $action = $node->get_child_by_name($name) || next;
@@ -42,9 +43,7 @@ sub match {
             push @{ $self->$method }, $action;
         }
     }
-
-    $node->match( $self );
-}
+};
 
 around execute => sub { # this is like _DISPATCH in Catalyst::Base
     my $next = shift;

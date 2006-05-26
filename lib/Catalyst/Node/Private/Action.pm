@@ -21,7 +21,7 @@ has component => (
 sub match {
     my ( $self, $dispatch ) = @_;
     my @arguments = ( $dispatch->path, $dispatch->arguments );
-    $dispatch->execute( $self, { arguments => \@arguments });
+    $dispatch->match( $self, { path => [], arguments => \@arguments });
 }
 
 sub execute {

@@ -7,6 +7,21 @@ use warnings;
 
 extends "Catalyst::Dispatch::Private::Call";
 
+around execute => sub {
+    my $next = shift;
+    my ( $self, @args ) = @_;
+
+    my $state = $self->$next( @args );
+    $self->context->state( $state );
+    return $state;
+}
+
+sub record_error {
+    my ( $self, $error, $node ) = @_;
+    $self->context->error( $error );
+    # no die
+}
+
 __PACKAGE__;
 
 __END__

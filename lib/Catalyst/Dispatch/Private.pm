@@ -15,13 +15,6 @@ has path => (
     default    => sub { [] },
 );
 
-sub match {
-    my ( $self, $node, $localize ) = @_;
-    $localize ||= {};
-    local @{ $self }{ keys %$localize } = values %$localize; # FIXME clone?
-    $node->match( $self );
-}
-
 with qw/Monju::Dispatch::Path/;
 
 has arguments => (
@@ -36,6 +29,18 @@ has context => (
     is  => "ro",
     required => 1,
 );
+
+sub match {
+    my ( $self, $node, $localize ) = @_;
+    $localize ||= {};
+    local @{ $self }{ keys %$localize } = values %$localize; # FIXME clone?
+
+    if ( @{ $self->path } == 0 ) {
+        $self->execute( $node );
+    } else {
+        $node->match( $self );
+    }
+}
 
 __PACKAGE__;
 

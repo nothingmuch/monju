@@ -11,7 +11,7 @@ use Context::Handle qw/context_sensitive/;
 with "Catalyst::Dispatch::Private";
 
 sub execute {
-    my ( $self, $node, $localize ) = @_;
+    my ( $self, $node ) = @_;
 
     my $c = $self->context;
 
@@ -19,7 +19,6 @@ sub execute {
 
     my $rv = eval {
         context_sensitive {
-            local @{ $self }{ keys %$localize } = values %$localize;
             $node->execute( $c, $self->arguments )
         }
     };
