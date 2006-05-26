@@ -6,12 +6,21 @@ use Moose::Role;
 use strict;
 use warnings;
 
+sub path {}; # FIXME role composition
+
 has path => (
     isa => "ArrayRef",
     is  => "ro",
     auto_deref => 1,
     default    => sub { [] },
 );
+
+sub match {
+    my ( $self, $node, $localize ) = @_;
+    $localize ||= {};
+    local @{ $self }{ keys %$localize } = values %$localize; # FIXME clone?
+    $node->match( $self );
+}
 
 with qw/Monju::Dispatch::Path/;
 
@@ -27,13 +36,6 @@ has context => (
     is  => "ro",
     required => 1,
 );
-
-sub match {
-    my ( $self, $node, $localize ) = @_;
-    $localize ||= {};
-    local @{ $self }{ keys %$localize } = values %$localize; # FIXME clone?
-    $node->match( $self );
-}
 
 __PACKAGE__;
 

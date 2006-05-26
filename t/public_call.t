@@ -87,7 +87,7 @@ my $app = Test::MockObject->new; # context factory
 
 $app->set_always( private_dispatcher => $controller );
 
-my $res = $match->execute( $req, $app ); # presumably this would get anything else the engine has to offer
+my $res = $match->execute( requrest => $req, application => $app ); # presumably this would get anything else the engine has to offer
 
 my $rv = $res->return_value;
 is( @$rv, 4, "four elements in rv");

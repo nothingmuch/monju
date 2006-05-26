@@ -6,10 +6,7 @@ use Moose::Role;
 use strict;
 use warnings;
 
-sub match {
-    my ( $self, $node ) = @_;
-    $node->match( $self );
-}
+requires "match";
 
 __PACKAGE__;
 

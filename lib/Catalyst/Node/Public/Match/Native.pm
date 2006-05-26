@@ -41,10 +41,10 @@ has arguments => (
 
 
 sub execute {
-    my ( $self, $req, $app, @extra ) = @_;
+    my ( $self, %params ) = @_;
 
-    my $catalyst_req = $self->make_request( $req, $app );
-    my $context = $self->make_context( $catalyst_req, $app );
+    my $catalyst_req = $self->make_request( %params );
+    my $context = $self->make_context( %params, request => $catalyst_req );
 
     my $d = Catalyst::Dispatch::Public::Action->new(
         context   => $context,
@@ -53,7 +53,7 @@ sub execute {
         # ....
     );
 
-    my $rv = $d->match( $app->private_dispatcher );
+    my $rv = $d->match( $params{application}->private_dispatcher );
 
     my $res = $context->response;
     $res->return_value( $rv );
@@ -83,18 +83,18 @@ sub merge_key { # a bit like a multimethod
 }
 
 sub make_request {
-    my ( $self, $req ) = @_;
+    my ( $self, %params ) = @_;
     my $creq = Test::MockObject->new;
 
-    $creq->set_always( engine_req => $req ); # creq has engine_req as it's delegate, actually
+    $creq->set_always( engine_req => $params{request} ); # creq has engine_req as it's delegate, actually
 }
 
 sub make_context {
-    my ( $self, $req, $app ) = @_;
-    # the $app will help us construct these objects - they are Catalyst level stuff, not Isotope level stuff
+    my ( $self, %params ) = @_;
+    # $params{application} will help us construct these objects - they are Catalyst level stuff, not Isotope level stuff
     my $c = Test::MockObject::Extends->new("Catalyst::Context");
     
-    $c->set_always( request => $req );
+    $c->set_always( request => $params{request} );
 
     my $res = Test::MockObject->new;
     my $rv_closure_var;
@@ -141,7 +141,7 @@ Add new keys. This merges data into the match object.
 Currently it masks the old data, but in the future it should concatenate
 argument lists, etc.
 
-=item execute $engine_req, $app, @extra
+=item execute $engine_req, %params
 
 This method encapsulates the handle_request cycle in Catalyst 5.6x.
 
@@ -162,7 +162,7 @@ The request object is constructed based on the engine request somewhere in @args
 
 =item ->match the dispatch on the private dispatch tree
 
-The private dispatch tree is provided by $app
+The private dispatch tree is provided by $params{application}
 
 =item return the Catalyst::Response object from the context object
 

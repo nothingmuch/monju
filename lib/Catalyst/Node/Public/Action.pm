@@ -18,8 +18,8 @@ has private_action_path => (
 sub match {
     my ( $self, $dispatch ) = @_;
 
-    return if scalar(@{ $dispatch->path }) == 0; # we only match when the path is empty
-    
+    return unless scalar(@{ $dispatch->path }) == 0; # we only match when the path is empty
+
     Native->new(
         private_action_path => $self->private_action_path,
     );

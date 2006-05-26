@@ -6,6 +6,8 @@ use Moose;
 use strict;
 use warnings;
 
+sub path {} # FIXME role composition
+
 with qw/
     Monju::Dispatch::Path
     Monju::Dispatch::Localize
@@ -18,7 +20,10 @@ has path => ( # FIXME this should be a delegate of URI
     default    => sub { [] },
 );
 
-
+sub match {
+    my ( $self, $node ) = @_;
+    $node->match( $self );
+}
 
 __PACKAGE__;
 
