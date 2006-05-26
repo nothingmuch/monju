@@ -78,7 +78,7 @@ my $get_index = HTTPRequest->new(
 
 my $match = $get_index->match( $root_ns );
 
-isa_ok( $match, "Catalyst::Node::Public::Match::Native" );
+isa_ok( $match, "Catalyst::Match::Public::Native" );
 
 is_deeply( $match->private_action_path, ["foo"] );
 

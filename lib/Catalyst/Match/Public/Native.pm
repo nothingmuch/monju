@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-package Catalyst::Node::Public::Match::Native;
+package Catalyst::Match::Public::Native;
 use Moose;
 
 use strict;
@@ -9,7 +9,7 @@ use warnings;
 use Scalar::Util qw/reftype/;
 use Catalyst::Dispatch::Public::Action;
 
-with "Catalyst::Node::Public::Match";
+with "Catalyst::Match::Public";
 
 # this is the path to the private action that should be invoked
 has private_action_path => (
@@ -113,15 +113,15 @@ __END__
 
 =head1 NAME
 
-Catalyst::Node::Public::Match::Native - A native 
+Catalyst::Match::Public::Native - A native 
 
 =head1 SYNOPSIS
 
-	use Catalyst::Node::Public::Match::Native;
+	use Catalyst::Match::Public::Native;
 
 =head1 DESCRIPTION
 
-This L<Catalyst::Node::Public::Match> object represents a successfully located
+This L<Catalyst::Match::Public> object represents a successfully located
 resource within the Catalyst public dispatcher.
 
 It encapsulates all the meta data that will be later be made available using

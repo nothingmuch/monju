@@ -8,7 +8,7 @@ use warnings;
 
 with "Catalyst::Node::Public";
 
-use aliased "Catalyst::Node::Public::Match::Native";
+use aliased "Catalyst::Match::Public::Native";
 
 has private_action_path => (
     isa => "ArrayRef",
