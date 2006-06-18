@@ -1,16 +1,17 @@
 #!/usr/bin/perl
 
-package Catalyst::Dispatch::Public::Action;
+package Catalyst::Dispatch::Private::FirstAction;
 use Moose;
 
 use strict;
 use warnings;
 
-use aliased "Catalyst::Dispatch::Private::Call";
+use aliased "Catalyst::Match::Private::Call";
+use aliased "Catalyst::Match::Private::FirstAction";
 
 use Context::Handle qw/context_sensitive/;
 
-extends "Catalyst::Dispatch::Private::Call"; # it actually acts on the private tree
+extends "Catalyst::Dispatch::Private";
 
 has begin_actions => (
     isa => "ArrayRef",
@@ -45,48 +46,25 @@ before match => sub { # FIXME replace with CollectByPath role
     }
 };
 
-around execute => sub { # this is like _DISPATCH in Catalyst::Base
+sub match_object_class {
+    return FirstAction;
+}
+
+around create_match_object => sub {
     my $next = shift;
-    my ( $self, $action ) = @_;
+    my ( $self, @args ) = @_;
 
-    # this is how the auto/end/begin actions will get invoked
-    # maybe it should really be $c->forwad( $auto ), $c->forward( $begin->[-1] ) etc
-    my $call = Call->new(
-        context => $self->context,
-        arguments => [ ],
+    my $begin = ( $self->begin_actions )[-1];
+    my $auto  = $self->auto_actions;
+    my $end   = ( $self->end_actions )[-1];
+
+    $self->$next(
+        @args, 
+        begin_action => $begin,
+        auto_actions => $auto,
+        end_action   => $end,
     );
-
-    $self->execute_begin( $call );
-    $self->execute_auto( $call ) || return;
-
-    # invoke the action itself
-    my $rv = context_sensitive { $self->$next( $action ) };
-
-    $self->execute_end( $call );
-
-    $rv->return;
 };
-
-sub execute_begin {
-    my ( $self, $call ) = @_;
-    $call->execute( $self->begin_actions->[-1] || return );
-}
-
-sub execute_auto {
-    my ( $self, $call ) = @_;
-
-    foreach my $auto ( $self->auto_actions ) {
-        return unless $call->execute( $auto );
-    }
-
-    return 1;
-}
-
-
-sub execute_end {
-    my ( $self, $call ) = @_;
-    $call->execute( $self->end_actions->[-1] || return );
-}
 
 __PACKAGE__;
 
@@ -96,11 +74,11 @@ __END__
 
 =head1 NAME
 
-Catalyst::Dispatch::Public::Action - Dispatch on the "found" action, before all forwards
+Catalyst::Dispatch::Private::FirstAction - Dispatch on the "found" action, before all forwards
 
 =head1 SYNOPSIS
 
-	use Catalyst::Dispatch::Public::Action;
+	use Catalyst::Dispatch::Private::FirstAction;
 
 =head1 DESCRIPTION
 

@@ -7,7 +7,7 @@ use strict;
 use warnings;
 
 use Scalar::Util qw/reftype/;
-use Catalyst::Dispatch::Public::Action;
+use Catalyst::Dispatch::Private::FirstAction;
 
 with "Catalyst::Match::Public";
 
@@ -39,26 +39,27 @@ has arguments => (
 
 # .... more attrs you find in Catalyst::Request
 
-
 sub execute {
     my ( $self, %params ) = @_;
 
     my $catalyst_req = $self->make_request( %params );
     my $context = $self->make_context( %params, request => $catalyst_req );
 
-    my $d = Catalyst::Dispatch::Public::Action->new(
+    my $d = Catalyst::Dispatch::Private::FirstAction->new(
         context   => $context,
         path      => $self->private_action_path,
         arguments => $self->arguments,
         # ....
     );
 
-    my $rv = $d->match( $params{application}->private_dispatcher );
+    if ( my $match = $d->match( $params{application}->private_dispatcher ) ) {
+        my $rv = $match->execute;
 
-    my $res = $context->response;
-    $res->return_value( $rv );
+        my $res = $context->response;
+        $res->return_value( $rv );
 
-    return $res;
+        return $res;
+    }
 }
 
 sub derive {
@@ -159,7 +160,7 @@ What this does is
 
 The request object is constructed based on the engine request somewhere in @args, and the data we've collected in $self
 
-=item Create the Dispatch::Public::Action, with the context in place
+=item Create the Dispatch::Private::FistAction, with the context in place
 
 =item ->match the dispatch on the private dispatch tree
 
