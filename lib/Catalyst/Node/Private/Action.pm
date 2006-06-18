@@ -5,6 +5,11 @@ use Moose;
 
 with "Catalyst::Node::Private";
 
+has name => (
+    isa => "Str",
+    is  => "ro",
+);
+
 has code => (
     isa => "CodeRef",
     is  => "ro", 

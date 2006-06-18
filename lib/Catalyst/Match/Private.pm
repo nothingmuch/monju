@@ -19,8 +19,8 @@ has context => (
 );
 
 has node => (
-    isa => "Catalyst::Node::Private",
-    is  => "ro",
+    does => "Catalyst::Node::Private",
+    is   => "ro",
     required => 1,
 );
 
