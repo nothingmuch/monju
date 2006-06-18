@@ -3,11 +3,9 @@
 package Catalyst::Match::Public;
 use Moose::Role;
 
-with qw/Monju::Match/;
+with qw/Catalyst::Match/;
 
 requires "derive";
-
-requires "execute";
 
 __PACKAGE__;
 

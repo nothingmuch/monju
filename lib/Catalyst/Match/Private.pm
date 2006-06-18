@@ -3,12 +3,7 @@
 package Catalyst::Match::Private;
 use Moose::Role;
 
-#use overload '&{}' => "codify";
-
-sub codify {
-    my $self = shift;
-    return sub { $self->execute(@_) };
-}
+with qw/Catalyst::Match/;
 
 has arguments => (
     isa => "ArrayRef",
