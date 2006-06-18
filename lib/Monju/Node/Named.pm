@@ -3,9 +3,6 @@
 package Monju::Node::Named;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 requires 'name';
 
 __PACKAGE__;

@@ -3,9 +3,6 @@
 package Monju::Node;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 requires "match";
 
 __PACKAGE__;

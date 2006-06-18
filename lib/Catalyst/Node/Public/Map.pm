@@ -3,9 +3,6 @@
 package Catalyst::Node::Public::Map;
 use Moose;
 
-use strict;
-use warnings;
-
 sub BUILD { # FIXME SkipBuild
     my ( $self, @args ) = @_;
     $self->Monju::Node::Collection::Hybrid::BUILD( @args );

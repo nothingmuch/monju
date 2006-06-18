@@ -3,9 +3,6 @@
 package Catalyst::Node::Public::Action;
 use Moose;
 
-use strict;
-use warnings;
-
 with "Catalyst::Node::Public";
 
 use Catalyst::Match::Public::Action;

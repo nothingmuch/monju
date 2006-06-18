@@ -3,9 +3,6 @@
 package Catalyst::Node::Private::Action;
 use Moose;
 
-use strict;
-use warnings;
-
 with "Catalyst::Node::Private";
 
 has code => (

@@ -3,9 +3,6 @@
 package Monju::Match::CollectedByPath;
 use Moose;
 
-use strict;
-use warnings;
-
 use Scalar::Util qw/refaddr/;
 
 with qw/Monju::Match/; # whatever that is

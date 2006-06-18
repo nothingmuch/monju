@@ -3,9 +3,6 @@
 package Monju::Node::Map;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 with qw/
     Monju::Node
     Monju::Node::Collection::Named

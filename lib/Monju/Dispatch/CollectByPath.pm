@@ -1,9 +1,7 @@
 #!/usr/bin/perl
 
 package Monju::Dispatch::CollectByPath;
-
-use strict;
-use warnings;
+use Moose::Role;
 
 use Scalar::Util qw/refaddr/;
 

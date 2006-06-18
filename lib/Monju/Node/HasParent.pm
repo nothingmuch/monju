@@ -3,9 +3,6 @@
 package Monju::Node::HasParent;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 use Monju::Node::Collection;
 
 has parent_node => (

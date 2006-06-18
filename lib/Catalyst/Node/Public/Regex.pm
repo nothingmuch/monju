@@ -3,9 +3,6 @@
 package Catalyst::Node::Public::Regex;
 use Moose;
 
-use strict;
-use warnings;
-
 extends "Catalyst::Node::Public";
 
 has children => (

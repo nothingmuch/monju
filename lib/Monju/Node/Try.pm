@@ -3,9 +3,6 @@
 package Monju::Node::Try;
 use Moose;
 
-use strict;
-use warnings;
-
 with qw/
     Monju::Node
     Monju::Node::Collection::Ordered

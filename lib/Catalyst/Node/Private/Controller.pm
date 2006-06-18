@@ -3,9 +3,6 @@
 package Catalyst::Node::Private::Controller;
 use Moose;
 
-use strict;
-use warnings;
-
 sub BUILD { # FIXME SkipBuild
     my ( $self, @args ) = @_;
 

@@ -3,9 +3,6 @@
 package Monju::Node::Collection::Named::Mutable;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 with "Monju::Node::Collection::Named";
 
 requires 'remove_children_by_name';

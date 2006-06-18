@@ -3,9 +3,6 @@
 package Catalyst::Match::Public;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 with qw/Monju::Match/;
 
 requires "derive";

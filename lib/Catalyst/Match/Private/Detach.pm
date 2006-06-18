@@ -1,9 +1,7 @@
 #!/usr/bin/perl
 
 package Catalyst::Match::Private::Detach;
-
-use strict;
-use warnings;
+use Moose;
 
 extends "Catalyst::Match::Private::Forward";
 

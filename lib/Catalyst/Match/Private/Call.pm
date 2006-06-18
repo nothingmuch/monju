@@ -3,9 +3,6 @@
 package Catalyst::Match::Private::Call;
 use Moose;
 
-use strict;
-use warnings;
-
 use Context::Handle qw/context_sensitive/;
 
 with "Catalyst::Match::Private";

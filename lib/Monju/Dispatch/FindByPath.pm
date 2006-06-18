@@ -3,9 +3,6 @@
 package Monju::Dispatch::FindByPath;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 with qw/
     Monju::Dispatch::Path
     Monju::Dispatch::Localize

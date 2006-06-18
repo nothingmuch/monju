@@ -3,9 +3,6 @@
 package Monju::Node::XPath;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 use Monju::Node::XPath::DocRoot;
 
 use Tree::XPathEngine;

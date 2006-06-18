@@ -3,9 +3,6 @@
 package Catalyst::Match::Public::Action;
 use Moose;
 
-use strict;
-use warnings;
-
 use Scalar::Util qw/reftype/;
 use Catalyst::Dispatch::Private::FirstAction;
 

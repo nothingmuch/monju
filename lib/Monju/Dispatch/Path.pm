@@ -3,9 +3,6 @@
 package Monju::Dispatch::Path;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 with "Monju::Dispatch";
 
 requires "path";

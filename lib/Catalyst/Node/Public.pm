@@ -3,9 +3,6 @@
 package Catalyst::Node::Public;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 with "Monju::Node";
 
 __PACKAGE__;

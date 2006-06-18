@@ -3,9 +3,6 @@
 package Monju::Node::Collection;
 use Moose::Meta::Role::SkipBuild;
 
-use strict;
-use warnings;
-
 requires 'child_list';
 
 requires 'child_count';

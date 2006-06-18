@@ -3,9 +3,6 @@
 package Monju::Dispatch::Path::String;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 with "Monju::Dispatch::Path";
 
 requires "split_path";

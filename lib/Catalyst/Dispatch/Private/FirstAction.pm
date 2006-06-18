@@ -3,9 +3,6 @@
 package Catalyst::Dispatch::Private::FirstAction;
 use Moose;
 
-use strict;
-use warnings;
-
 use aliased "Catalyst::Match::Private::Call";
 use aliased "Catalyst::Match::Private::FirstAction";
 

@@ -3,9 +3,6 @@
 package Monju::Node::Collection::Hybrid::Mutable;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 use Monju::Node::Named;
 
 use Carp qw/croak/;

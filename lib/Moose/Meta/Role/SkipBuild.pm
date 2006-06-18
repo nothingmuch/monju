@@ -5,9 +5,6 @@ use Moose;
 
 use Moose::Role ();
 
-use strict;
-use warnings;
-
 use Context::Handle qw/context_sensitive/;
 
 sub import {

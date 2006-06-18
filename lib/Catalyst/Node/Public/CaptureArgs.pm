@@ -3,9 +3,6 @@
 package Catalyst::Node::Public::CaptureArgs;
 use Moose;
 
-use strict;
-use warnings;
-
 has count => (
     isa => "Undef | Int",
     is  => "ro",

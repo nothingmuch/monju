@@ -3,8 +3,6 @@
 package Monju::Dispatch::Localize;
 use Moose::Role;
 
-use strict;
-use warnings;
 no warnings "uninitialized";
 
 with "Monju::Dispatch";

@@ -3,9 +3,6 @@
 package Catalyst::Dispatch::Public::HTTPRequest;
 use Moose;
 
-use strict;
-use warnings;
-
 sub path {} # FIXME role composition
 
 with qw/

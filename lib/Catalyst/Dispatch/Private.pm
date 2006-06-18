@@ -3,9 +3,6 @@
 package Catalyst::Dispatch::Private;
 use Moose;
 
-use strict;
-use warnings;
-
 use Catalyst::Match::Private::Call;
 
 sub path {}; # FIXME role composition

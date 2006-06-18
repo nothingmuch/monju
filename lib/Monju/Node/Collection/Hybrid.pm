@@ -3,9 +3,6 @@
 package Monju::Node::Collection::Hybrid;
 use Moose::Meta::Role::SkipBuild;
 
-use strict;
-use warnings;
-
 use Carp qw/croak/;
 
 # FIXME this should be handled by role composition

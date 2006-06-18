@@ -3,9 +3,6 @@
 package Monju::Node::XPath::DocRoot;
 use Moose;
 
-use strict;
-use warnings;
-
 has node => (
     isa => "Monju::Node::XPath",
     is  => "ro",

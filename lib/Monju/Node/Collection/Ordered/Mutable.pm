@@ -3,9 +3,6 @@
 package Monju::Node::Collection::Ordered::Mutable;
 use Moose::Role;
 
-use strict;
-use warnings;
-
 with "Monju::Node::Collection::Ordered";
 
 requires 'splice_children';
