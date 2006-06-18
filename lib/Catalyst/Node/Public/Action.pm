@@ -8,7 +8,7 @@ use warnings;
 
 with "Catalyst::Node::Public";
 
-use aliased "Catalyst::Match::Public::Native";
+use Catalyst::Match::Public::Action;
 
 has private_action_path => (
     isa => "ArrayRef",
@@ -20,7 +20,7 @@ sub match {
 
     return unless scalar(@{ $dispatch->path }) == 0; # we only match when the path is empty
 
-    Native->new(
+    Catalyst::Match::Public::Action->new(
         private_action_path => $self->private_action_path,
     );
 }
@@ -44,7 +44,7 @@ Catalyst::Node::Public::Action - An end point in the public dispatch tree, that 
 This is the only point in the L<Catalyst::Node::Public> tree that actually
 matches - the leaf, if you will.
 
-It returns a L<Catalyst::Node::Public::Match::Native> object that contains a
+It returns a L<Catalyst::Node::Public::Match::Action> object that contains a
 private action path.
 
 The parent nodes are responsible for filling in all other information.

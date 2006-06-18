@@ -32,8 +32,8 @@ When the public dispatcher is matched against
 L<Catalyst::Dispatch::Public::HTTPRequest> it should return a
 L<Catalyst::Match::Public> object.
 
-The default, Match::Native, corresponds with a private action in the private
-tree. Match::Native->execute encapsulates L<Catalyst>'s C<handle_request>
+The default, Match::Action, corresponds with a private action in the private
+tree. Match::Action->execute encapsulates L<Catalyst>'s C<handle_request>
 function.
 
 Nested frameworks should return something that does
@@ -61,7 +61,7 @@ This method encapsulates handle_request.
 
 It receives the engine-level request object that the
 L<Catalyst::Dispatch::Public::HTTPRequest> object was constructed with, and the
-application (anything really). In the Native request the application is what
+application (anything really). In the Action request the application is what
 contains the dispatch trees and facilitates the construction of $c, etc.
 
 =back

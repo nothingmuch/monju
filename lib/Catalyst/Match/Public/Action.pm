@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-package Catalyst::Match::Public::Native;
+package Catalyst::Match::Public::Action;
 use Moose;
 
 use strict;
@@ -113,11 +113,12 @@ __END__
 
 =head1 NAME
 
-Catalyst::Match::Public::Native - A native 
+Catalyst::Match::Public::Action - A match on the public tree encapsulating an
+action in the private tree.
 
 =head1 SYNOPSIS
 
-	use Catalyst::Match::Public::Native;
+	use Catalyst::Match::Public::Action;
 
 =head1 DESCRIPTION
 
