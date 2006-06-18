@@ -1,10 +1,12 @@
 #!/usr/bin/perl
 
 package Catalyst::Dispatch::Private;
-use Moose::Role;
+use Moose;
 
 use strict;
 use warnings;
+
+use Catalyst::Match::Private::Call;
 
 sub path {}; # FIXME role composition
 
@@ -30,13 +32,30 @@ has context => (
     required => 1,
 );
 
+has match_object_class => (
+    isa => "Str",
+    is  => "ro",
+    default => "Catalyst::Match::Private::Call",
+);
+
+sub create_match_object {
+    my ( $self, $node, %attrs ) = @_;
+
+    return $self->match_object_class->new(
+        arguments => scalar($self->arguments),
+        context   => $self->context,
+        %attrs,
+        node      => $node,
+    );
+}
+
 sub match {
     my ( $self, $node, $localize ) = @_;
     $localize ||= {};
     local @{ $self }{ keys %$localize } = values %$localize; # FIXME clone?
 
     if ( @{ $self->path } == 0 ) {
-        $self->execute( $node );
+        return $self->create_match_object( $node );
     } else {
         $node->match( $self );
     }

@@ -9,7 +9,7 @@ use Test::MockObject::Extends;
 
 use aliased "Catalyst::Node::Private::Controller";
 use aliased "Catalyst::Node::Private::Action";
-use aliased "Catalyst::Dispatch::Private::Call";
+use Catalyst::Dispatch::Private;
 
 {
     package Catalyst::Context;
@@ -56,22 +56,22 @@ $c->mock( enter => sub { } );
 $c->mock( leave => sub { } );
 $c->mock( error => sub { } );
 
-my $call_foo = Call->new(
+my $call_foo = Catalyst::Dispatch::Private->new(
     path => [ "foo" ],
     context => $c,
 );
 
-my $call_bar = Call->new(
+my $call_bar = Catalyst::Dispatch::Private->new(
     path => [ "bar" ],
     context => $c,
 );
 
-my $call_args = Call->new(
+my $call_args = Catalyst::Dispatch::Private->new(
     path => [qw/foo bar gorch/],
     context => $c,
 );
 
-is_deeply( $call_foo->match( $controller ),  [ foo => $comp, $c ], "dispatch foo", );
-is_deeply( $call_bar->match( $controller ),  [ bar => $comp, $c ], "dispatch bar" );
-is_deeply( $call_args->match( $controller ), [ foo => $comp, $c, qw/bar gorch/ ], "dispatch with args" );
+is_deeply( $call_foo->match( $controller )->execute,  [ foo => $comp, $c ], "dispatch foo", );
+is_deeply( $call_bar->match( $controller )->execute,  [ bar => $comp, $c ], "dispatch bar" );
+is_deeply( $call_args->match( $controller )->execute, [ foo => $comp, $c, qw/bar gorch/ ], "dispatch with args" );
 
