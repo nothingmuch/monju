@@ -7,7 +7,7 @@ use Test::More 'no_plan';
 
 use Test::MockObject::Extends;
 
-use aliased "Catalyst::Node::Private::Controller";
+use aliased "Catalyst::Node::Private::Namespace";
 use aliased "Catalyst::Node::Private::Action";
 use Catalyst::Dispatch::Private;
 
@@ -41,12 +41,12 @@ my $bar = Action->new(
     component => $comp,
 );
 
-my $controller = Controller->new(
+my $controller = Namespace->new(
     component => $comp,
     child_hash => { foo => $foo, bar => $bar },
 );
 
-isa_ok( $controller, Controller );
+isa_ok( $controller, Namespace );
 isa_ok( $controller->get_child_by_name("foo"), Action );
 is( $controller->get_child_by_name("foo"), $foo, "foo action is correct" );
 

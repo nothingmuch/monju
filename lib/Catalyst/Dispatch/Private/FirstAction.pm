@@ -34,7 +34,7 @@ has end_actions => (
 before match => sub { # FIXME replace with CollectByPath role
     my ( $self, $node ) = @_;
 
-    if ( $node->isa("Catalyst::Node::Private::Controller") ) {
+    if ( $node->isa("Catalyst::Node::Private::Namespace") ) {
         foreach my $name ( qw/begin auto end/ ) {
             my $action = $node->get_child_by_name($name) || next;
             my $method = "${name}_actions";

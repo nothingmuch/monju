@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-package Catalyst::Node::Private::Controller;
+package Catalyst::Node::Private::Namespace;
 use Moose;
 
 sub BUILD { # FIXME SkipBuild
@@ -28,11 +28,11 @@ __END__
 
 =head1 NAME
 
-Catalyst::Node::Private::Controller - 
+Catalyst::Node::Private::Namespace - 
 
 =head1 SYNOPSIS
 
-	use Catalyst::Node::Private::Controller;
+	use Catalyst::Node::Private::Namespace;
 
 =head1 DESCRIPTION
 

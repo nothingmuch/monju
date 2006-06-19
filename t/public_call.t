@@ -7,7 +7,7 @@ use Test::More 'no_plan';
 use Test::MockObject;
 use Test::MockObject::Extends;
 
-use aliased "Catalyst::Node::Private::Controller";
+use aliased "Catalyst::Node::Private::Namespace";
 use aliased "Catalyst::Node::Private::Action";
 
 use aliased "Catalyst::Dispatch::Public::HTTPRequest";
@@ -45,7 +45,7 @@ my $bar = Action->new(
     component => $comp,
 );
 
-my $controller = Controller->new(
+my $controller = Namespace->new(
     component => $comp,
     child_hash => { foo => $foo, bar => $bar },
 );
