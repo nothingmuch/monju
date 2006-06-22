@@ -31,7 +31,7 @@ my $w = Class::Workflow->new(
 
     sub accept {
         my ( $self, $c, $instance, @args ) = @_;
-        return "MyController::accept";
+        return ( {}, "MyController::accept" );
     }
 
     extends "Catalyst::Component::Controller";
